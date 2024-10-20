@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public interface RoomService {
 
-    HttpApiResponse<RoomResponseDto> createRoom(RoomRequestDto dto);
+    HttpApiResponse<RoomResponseDto> createRoom(Integer hotelId, RoomRequestDto dto);
 
     HttpApiResponse<RoomResponseDto> getRoomById(Integer id);
 

@@ -1,8 +1,8 @@
 package javachi.biz.hotelmanagementsystem.dto.req;
 
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.Positive;
 import javachi.biz.hotelmanagementsystem.domain.RoomType;
 import lombok.*;
 
@@ -12,13 +12,14 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class RoomRequestDto {
-    @NotNull(message = "Room type cannot by blank or null")
     private RoomType roomType;
-    @NotNull(message = "Room number cannot bu blank or null")
-    private String roomNumber;
-    @Size(min = 1, max = 4)
+    @Positive
+    private Integer roomNumber;
+    @Min(value = 1)
+    @Max(value = 8)
     private Integer roomCapacity;
     @Min(value = 100_000)
     private Double roomPrice;
     private Boolean roomStatus;
+    private Integer hotelId;
 }

@@ -1,9 +1,6 @@
 package javachi.biz.hotelmanagementsystem.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -16,8 +13,10 @@ import lombok.*;
 public class RoomEntity extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private RoomType roomType;
-    private String roomNumber;
+    @Column(unique = true)
+    private Integer roomNumber;
     private Integer roomCapacity;
     private Double roomPrice;
     private Boolean roomStatus;
+    private Integer hotelId;
 }

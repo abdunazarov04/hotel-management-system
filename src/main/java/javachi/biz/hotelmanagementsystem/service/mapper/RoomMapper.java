@@ -1,4 +1,5 @@
 package javachi.biz.hotelmanagementsystem.service.mapper;
+
 import javachi.biz.hotelmanagementsystem.domain.RoomEntity;
 import javachi.biz.hotelmanagementsystem.dto.req.RoomRequestDto;
 import javachi.biz.hotelmanagementsystem.dto.resp.RoomResponseDto;
@@ -24,6 +25,7 @@ public class RoomMapper {
                 .roomPrice(dto.getRoomPrice())
                 .roomStatus(dto.getRoomStatus())
                 .roomType(dto.getRoomType())
+                .hotelId(dto.getHotelId())
                 .build();
     }
 }

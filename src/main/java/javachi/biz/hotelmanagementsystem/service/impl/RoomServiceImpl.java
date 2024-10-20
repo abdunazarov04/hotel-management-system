@@ -23,8 +23,9 @@ public class RoomServiceImpl implements RoomService {
     private final RoomMapper roomMapper;
 
     @Override
-    public HttpApiResponse<RoomResponseDto> createRoom(RoomRequestDto dto) {
+    public HttpApiResponse<RoomResponseDto> createRoom(Integer hotelId, RoomRequestDto dto) {
         RoomEntity entity = roomMapper.toEntity(dto);
+        entity.setHotelId(hotelId);
         return HttpApiResponse.<RoomResponseDto>builder()
                 .code(200)
                 .success(true)
@@ -68,13 +69,14 @@ public class RoomServiceImpl implements RoomService {
         if (userDto.getRoomType() != null) {
             entity.setRoomType(userDto.getRoomType());
         }
-        this.roomRepository.save(entity);
-
+        if (userDto.getHotelId() != null){
+            entity.setHotelId(userDto.getHotelId());
+        }
         return HttpApiResponse.<RoomResponseDto>builder()
                 .code(200)
                 .success(true)
                 .message("Room is updated!")
-                .content(roomMapper.toDto(entity))
+                .content(roomMapper.toDto(this.roomRepository.saveAndFlush(entity)))
                 .build();
     }
 
