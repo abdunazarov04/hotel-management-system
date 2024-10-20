@@ -31,4 +31,16 @@ public class CommentController {
         return this.commentService.getCommentById(commentId);
     }
 
+    @PostMapping("/update")
+    @Operation(summary = "Update comment by id!")
+    public HttpApiResponse<CommentResponseDto> updateCommentById(@RequestParam Integer id, @RequestBody @Valid CommentRequestDto dto) {
+        return this.commentService.updateComment(id, dto);
+    }
+
+    @DeleteMapping("/delete")
+    @Operation(summary = "Delete comment by id!")
+    public HttpApiResponse<CommentResponseDto> deleteCommentById(@RequestParam Integer commentId) {
+        return this.commentService.deleteComments(commentId);
+    }
+
 }
