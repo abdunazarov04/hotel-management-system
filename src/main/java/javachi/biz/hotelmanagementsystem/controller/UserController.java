@@ -11,20 +11,19 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
+@PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
 public class UserController {
 
     private final AuthUserService authUserService;
 
     @GetMapping("/get-info")
     @Operation(summary = "Get auth user by ID")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public HttpApiResponse<AuthUserDto> getAuthUserById(@RequestParam(value = "id") Integer authId) {
         return this.authUserService.getAuthUserById(authId);
     }
 
     @PostMapping("/update")
     @Operation(summary = "Update user information")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public HttpApiResponse<AuthUserDto> updateUserInfo(@RequestParam(value = "id") Integer authId,
                                                        @RequestBody AuthUserDto userDto) {
         return this.authUserService.updateAuthUser(authId, userDto);
@@ -32,7 +31,6 @@ public class UserController {
 
     @DeleteMapping("/delete")
     @Operation(summary = "Update user information")
-    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public HttpApiResponse<AuthUserDto> deleteUserInfo(@RequestParam(value = "id") Integer authId) {
         return this.authUserService.deleteUser(authId);
     }

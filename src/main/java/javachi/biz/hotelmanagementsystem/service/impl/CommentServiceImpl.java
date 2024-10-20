@@ -34,7 +34,12 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public HttpApiResponse<CommentResponseDto> getCommentById(Integer id) {
-        return null;
+        return HttpApiResponse.<CommentResponseDto>builder()
+                .code(HttpStatus.OK.value())
+                .success(true)
+                .message("Get comment by id!")
+                .content(commentMapper.toDto(commentRepository.findById(id).get()))
+                .build();
     }
 
     @Override
