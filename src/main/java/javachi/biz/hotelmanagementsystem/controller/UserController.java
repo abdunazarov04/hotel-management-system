@@ -22,7 +22,7 @@ public class UserController {
         return this.authUserService.getAuthUserById(authId);
     }
 
-    @PostMapping("/update")
+    @PatchMapping("/update")
     @Operation(summary = "Update user information")
     public HttpApiResponse<AuthUserDto> updateUserInfo(@RequestParam(value = "id") Integer authId,
                                                        @RequestBody AuthUserDto userDto) {

@@ -33,7 +33,7 @@ public class HotelController {
         return this.hotelService.createHotel(dto);
     }
 
-    @PostMapping("/update")
+    @PatchMapping("/update")
     @Operation(summary = "Update user information")
     public HttpApiResponse<HotelResponseDto> updateHotelInfo(@RequestParam(value = "id") Integer authId,
                                                              @RequestBody HotelRequestDto dto) {
